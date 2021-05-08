@@ -24,3 +24,11 @@ def contact(request):
 			contact.save()
 			messages.success(request, "Your message has been sent!")
 	return render(request, 'home/contact.html')
+
+
+def search(request):
+
+	
+
+
+	return HttpResponse("This is search")
