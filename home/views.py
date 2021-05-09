@@ -1,5 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
+
+
+# custom models
 from home.models import Contact
 from blog.models import Post
 
@@ -45,7 +49,31 @@ def search(request):
 	return render(request, 'home/search.html', params)
 
 
+def handleSignup(request):
+	
+	if request.method == 'POST':
+		# Get the post parameters
+		username = request.POST['username']
+		fname = request.POST['fname']
+		lname = request.POST['lname']
+		email = request.POST['email']
+		pass1 = request.POST['pass1']
+		pass2 = request.POST['pass2']
 
+		# Check for errorneous inputs
+		# 
+
+		# Create the user
+		myuser = User.objects.create_user(username, email, pass1)
+		myuser.first_name = fname
+		myuser.last_name = lname
+		myuser.save()
+		messages.success(request, "Your iCoder account has been successfully created.")
+
+		return redirect('home')
+
+	else:
+		return HttpResponse('404 - Not Found')
 
 
 

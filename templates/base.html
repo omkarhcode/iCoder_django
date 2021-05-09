@@ -71,7 +71,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/signup/" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Choose a unique username">
@@ -96,7 +97,7 @@
                             <label for="pass2">Confrim Password</label>
                             <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm your password">
                         </div>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -122,7 +123,7 @@
                             <label for="pass">Password</label>
                             <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter your password">
                         </div>
-                        <button type="button" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
             </div>
