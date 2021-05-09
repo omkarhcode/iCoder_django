@@ -14,12 +14,22 @@
 {% endblock stylecss %}
 {% block blogactive %}active{% endblock blogactive %}
 {% block body %}
-<div class="container">
-    <div class="py-3 text-left">
-        <h4>Search results:</h4>
-    </div>
-    <div class="row mb-2">
-        {% for post in allPosts %}
+<div class="container my-3">
+    <h2>Search results:</h2>
+    {% if allPosts|length < 1 %} 
+    	<p>No search results.</p>
+    	<p>Your Search - <strong>"{{ query }}"</strong> did not match any doccuments.<br>    	
+    	Suggestions:
+    	<ul>
+    		<li>Make sure that all words are spelled correctly.</li>
+    		<li>Try different keywords.</li>
+    		<li>Try more general keywords.</li>
+    		<li>Try fewer keywords.</li>
+    	</ul>
+    	</p>
+
+    {% endif %}
+    {% for post in allPosts %}
         <div class="col-md-12">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
@@ -37,7 +47,6 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
 </div>
 {% endblock body %}
