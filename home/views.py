@@ -7,12 +7,15 @@ from django.contrib.auth import authenticate, login, logout
 from home.models import Contact
 from blog.models import Post
 
+# HTML pages
 def home(request):
 	allPosts = Post.objects.all()
 	context = {'allPosts': allPosts}
 	return render(request, 'home/home.html',context)
 
 def about(request):
+
+
 	return render(request, 'home/about.html')
 
 def contact(request):
@@ -28,7 +31,6 @@ def contact(request):
 			contact.save()
 			messages.success(request, "Your message has been sent!")
 	return render(request, 'home/contact.html')
-
 
 def search(request):
 	query = request.GET['query']
@@ -48,7 +50,7 @@ def search(request):
 	params = {'allPosts': allPosts, 'query': query}
 	return render(request, 'home/search.html', params)
 
-
+# Authentication APIs
 def handleSignup(request):
 	
 	if request.method == 'POST':
@@ -85,9 +87,6 @@ def handleSignup(request):
 
 	else:
 		return HttpResponse('404 - Not Found')
-
-
-
 
 def handleLogin(request):
 

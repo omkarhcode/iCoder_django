@@ -12,3 +12,12 @@ class Contact(models.Model):
 
 	def __str__(self):
 		return "Message from " + self.name + " - "+ self.email
+
+
+
+# sno
+# comment
+# user
+# post
+# parent
+# timestaml
