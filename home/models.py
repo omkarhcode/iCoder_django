@@ -15,9 +15,4 @@ class Contact(models.Model):
 
 
 
-# sno
-# comment
-# user
-# post
-# parent
-# timestaml
+
