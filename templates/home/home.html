@@ -36,7 +36,7 @@
                     <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}}</strong>
                     <h3 class="mb-0">{{post.title}}</h3>
                     <div class="mb-1 text-muted">{{post.datetime}}</div>
-                    <p class="card-text mb-auto">{{post.content | truncatechars:150}}</p>
+                    <p class="card-text mb-auto">{{post.content |striptags| truncatechars:150}}</p>
                     <a href="/blog/{{post.slug}}" role="button" class="btn btn-info mt-1">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
