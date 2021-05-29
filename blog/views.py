@@ -1,13 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from blog.models import Post, BlogComment
-from blog.templatetags import extras
+# from blog.templatetags import extras
 
 # Create your views here.
 def blogHome(request):
 	allPosts = Post.objects.all()
 	context = {'allPosts': allPosts}
-	return render(request, 'blog/blogHome.html', context )
+	return render(request, 'blog/blogHome.html', context)
 
 
 def blogPost(request, slug):
@@ -24,7 +24,6 @@ def blogPost(request, slug):
 			replyDict[reply.parent.sno] = [reply]
 		else:
 			replyDict[reply.parent.sno].append(reply)
-
 
 	context = {'post':post, 'comments':comments, 'user': request.user, 'replyDict': replyDict}
 	return render(request, 'blog/blogPost.html', context)
@@ -46,10 +45,7 @@ def postComment(request):
 			parent = BlogComment.objects.get(sno=parentSno)
 			comment = BlogComment(comment=comment, user=user, post=post, parent = parent)	
 			comment.save()
-			messages.success(request, "Your reply has been posted successfully")
-
-
-		
+			messages.success(request, "Your reply has been posted successfully")		
 	
 	return redirect(f'/blog/{post.slug}')
 
