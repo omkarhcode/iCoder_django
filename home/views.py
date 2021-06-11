@@ -11,11 +11,9 @@ from blog.models import Post
 def home(request):
 	allPosts = Post.objects.all()
 	context = {'allPosts': allPosts}
-	return render(request, 'home/home.html',context)
+	return render(request, 'home/home.html', context)
 
 def about(request):
-
-
 	return render(request, 'home/about.html')
 
 def contact(request):
