@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x&kxzs!c5a(=k34mb=mx(oc45i86#(xob(01q#$#_4-^iq1ark'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS=['*']
 
@@ -92,6 +92,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Checks and Configures HEROKU Postgres Database
+if dj_database_url.config() != {}:
+    DATABASES['default'] = dj_database_url.config()
+
 
 
 # Password validation
